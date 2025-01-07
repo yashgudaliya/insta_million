@@ -3,135 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refer and Earn</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            color: #333;
-        }
-        .wallet-balance {
-            font-size: 18px;
-            margin: 20px 0;
-        }
-        .referral-section {
-            margin: 20px 0;
-        }
-        .referral-input {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-        }
-        input[type="text"] {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 70%;
-        }
-        button {
-            padding: 10px 15px;
-            margin-left: 10px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .copy-feedback {
-            color: green;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-    </style>
+    <title> - Frens</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <meta name="theme-color" content="#f19e36" />
+
+    <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico">
 </head>
-<body>
-    <div class="container">
-        <h2>Refer and Earn</h2>
-        <p>Share your referral link and earn 500 coins for each new signup!</p>
+<body class="frens">
+    
+    <div class="haeder">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Outer Circle -->
+                <circle cx="250" cy="250" r="240" fill="none" stroke="#D4AF37" stroke-width="20"/>
+              
+                <!-- Background Circle -->
+                <circle cx="250" cy="250" r="200" fill="#000000"/>
+              
+                <!-- Central Geometric Shape -->
+                <path d="M250 120 L310 200 L250 280 L190 200 Z" fill="#FFFFFF"/>
+                <rect x="230" y="180" width="40" height="40" fill="#000000"/>
+                <rect x="230" y="210" width="40" height="20" fill="#FFFFFF"/>
+              
+                <!-- Decorative Patterns -->
+                <circle cx="250" cy="250" r="200" fill="none" stroke="#D4AF37" stroke-dasharray="10 10" stroke-width="2"/>
+              
+                <!-- Inner Circular Elements -->
+                <circle cx="250" cy="250" r="100" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                <circle cx="250" cy="250" r="70" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+              
+                <!-- Highlight Effect -->
+                <circle cx="250" cy="250" r="240" fill="none" stroke="#FFD700" stroke-opacity="0.4" stroke-width="15"/>
+              </svg>
+              
+        </a>
+    </div>
 
-        <div class="wallet-balance">
-            Wallet Balance: <span id="walletBalance">0</span> Coins
+    <div class="frens-main">
+
+        <div class="frens-count">
+            <span>Invite friends </span>
         </div>
 
-        <div class="referral-section">
-            <h3>Your Referral Link</h3>
-            <div class="referral-input">
-                <input type="text" id="referralLink" value="https://t.me/Instamillion_Lotto_bot/insta_million" readonly>
-                <button id="copyButton">Copy Link</button>
-            </div>
-            <div class="copy-feedback" id="copyFeedback">Link copied to clipboard!</div>
-        </div>
+        
 
-        <div>
-            <button onclick="simulateReferral()">Simulate Referral</button>
+            
+
+            
         </div>
     </div>
 
-    <script>
-        const walletKey = "walletBalance"; // Local storage key for wallet balance
-        const referralBonus = 500; // Bonus per referral
 
-        // Initialize wallet balance in localStorage if not set
-        if (!localStorage.getItem(walletKey)) {
-            localStorage.setItem(walletKey, 0);
-        }
+    
 
-        // Update wallet balance on page load
-        function updateWalletDisplay() {
-            const balance = localStorage.getItem(walletKey);
-            document.getElementById("walletBalance").textContent = balance;
-        }
+        <div class="frens-help-box">
+            <div class="frens-help-content">
+                <div class="frens-help-image">
+                    <img src="./assets/images/World coin.svg" width="50px">
+                </div>
+                <div class="fren-help-text">
+                    <h5>Invite 5 friends </h5>
+                    <div>
+                        <img src="./assets/images/World coin.svg" width="15px">
+                        <span>2,500</span>
+                       
+                    </div>
+                </div>
+            </div>
 
-        // Copy referral link
-        const copyButton = document.getElementById("copyButton");
-        const referralLink = document.getElementById("referralLink");
-        const copyFeedback = document.getElementById("copyFeedback");
+            <div class="frens-open-detail">
+                <a href="guid.html">Open details</a>
+            </div>
+        </div>
+    </div>
+    <div class="frens-help">
+        <div class="frens-help-title">
+            <h2>Invite friends and Earn Apple Coins! </h2><br>
+            <h3>Here’s how it works:</h3><br>
+            <span>Click the link to get started:</span><br>
+                <span>  Sign up and start exploring.</span><br>
+                    <span> Invite your friends using your own referral link.</span><br>
+                        <span> Earn Apple Coins with every new sign-up and invite!</span><br>
+        </div>
+ <div class="frens-invite">
+        <div class="frens-invite-button">
+            <input type="text" value="https://youtube.com/@html-hero?si=iCMCmyo6Twil2okd" id="link" readonly>
+            <button id="copyButton">Copy Link</button>
+        </div>
+    </div>
+ 
+   <script src="./assets/js/js.js"></script>
+    <script src="./assets/js/charge.js"></script>
 
-        copyButton.addEventListener("click", () => {
-            navigator.clipboard.writeText(referralLink.value)
-                .then(() => {
-                    copyFeedback.style.display = "block";
-                    setTimeout(() => {
-                        copyFeedback.style.display = "none";
-                    }, 2000);
-                })
-                .catch(err => {
-                    alert("Failed to copy link. Please try again.");
-                });
-        });
-
-        // Simulate a referral
-        function simulateReferral() {
-            const currentBalance = parseInt(localStorage.getItem(walletKey), 10);
-            const newBalance = currentBalance + referralBonus;
-            localStorage.setItem(walletKey, newBalance);
-            updateWalletDisplay();
-            alert(`Referral successful! You earned ${referralBonus} coins.`);
-        }
-
-        // Initialize wallet display
-        document.addEventListener("DOMContentLoaded", updateWalletDisplay);
-    </script>
 </body>
 </html>
