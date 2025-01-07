@@ -3,73 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invite Friends</title>
+    <title>Refer and Earn</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="material/css/styles.css">
-    <link rel="stylesheet" href="material/css/st.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+        }
+        .wallet-balance {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .referral-section {
+            margin: 20px 0;
+        }
+        .referral-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 70%;
+        }
+        button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
         .copy-feedback {
             color: green;
             font-size: 14px;
             margin-top: 5px;
             display: none;
         }
-        .balance {
-            margin: 20px 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
-    <div class="frens-help">
-        <div class="frens-help-title">
-            <h2>Invite friends and Earn insta million Coins! 500 </h2><br>
-            <h3>Here’s how it works:</h3><br>
-            <span>Click the link to get started:</span><br>
-            <span>Sign up and start exploring.</span><br>
-            <span>Invite your friends using your own referral link.</span><br>
-            <span>Earn insta million Coins with every new sign-up and invite!</span><br>
-        </div>
-    </div>
+    <div class="container">
+        <h2>Refer and Earn</h2>
+        <p>Share your referral link and earn 500 coins for each new signup!</p>
 
-    <div class="frens-invite">
-        <div class="frens-invite-button">
-            <input type="text" value="https://t.me/Instamillion_Lotto_bot/insta_million" id="link" readonly>
-            <button id="copyButton">Copy Link</button>
+        <div class="wallet-balance">
+            Wallet Balance: <span id="walletBalance">0</span> Coins
+        </div>
+
+        <div class="referral-section">
+            <h3>Your Referral Link</h3>
+            <div class="referral-input">
+                <input type="text" id="referralLink" value="https://yourwebsite.com/referral?code=12345" readonly>
+                <button id="copyButton">Copy Link</button>
+            </div>
             <div class="copy-feedback" id="copyFeedback">Link copied to clipboard!</div>
         </div>
+
+        <div>
+            <button onclick="simulateReferral()">Simulate Referral</button>
+        </div>
     </div>
 
-    <nav class="bottom-nav">
-        <a href="home.html" class="nav-item">
-            <i class="fas fa-home"></i>
-            <span>HOME</span>
-        </a>
-        <a href="leaderboard.html" class="nav-item">
-            <i class="fas fa-trophy"></i>
-            <span>LEADERBOARD</span>
-        </a>
-        <a href="invite-friends.html" class="nav-item">
-            <i class="fas fa-user-friends"></i>
-            <span>FRIENDS</span>
-        </a>
-        <a href="task.html" class="nav-item">
-            <i class="fas fa-tasks"></i>
-            <span>TASKS</span>
-        </a>
-        <a href="balance.html" class="nav-item">
-            <i class="fas fa-wallet"></i>
-            <span>BALANCE</span>
-        </a>
-    </nav>
-
     <script>
-        // Simulating backend API with local storage
-        const walletKey = "walletBalance"; // Key for storing wallet balance
-        const referralBonus = 500; // Coins per referral
+        const walletKey = "walletBalance"; // Local storage key for wallet balance
+        const referralBonus = 500; // Bonus per referral
 
-        // Initialize wallet balance in local storage
+        // Initialize wallet balance in localStorage if not set
         if (!localStorage.getItem(walletKey)) {
             localStorage.setItem(walletKey, 0);
         }
@@ -80,27 +103,26 @@
             document.getElementById("walletBalance").textContent = balance;
         }
 
-        // Handle Copy Link functionality
+        // Copy referral link
         const copyButton = document.getElementById("copyButton");
-        const linkInput = document.getElementById("link");
-        const feedback = document.getElementById("copyFeedback");
+        const referralLink = document.getElementById("referralLink");
+        const copyFeedback = document.getElementById("copyFeedback");
 
         copyButton.addEventListener("click", () => {
-            navigator.clipboard.writeText(linkInput.value)
+            navigator.clipboard.writeText(referralLink.value)
                 .then(() => {
-                    feedback.style.display = "block";
+                    copyFeedback.style.display = "block";
                     setTimeout(() => {
-                        feedback.style.display = "none";
+                        copyFeedback.style.display = "none";
                     }, 2000);
                 })
                 .catch(err => {
-                    console.error("Failed to copy the link:", err);
-                    alert("Failed to copy the link. Please try again.");
+                    alert("Failed to copy link. Please try again.");
                 });
         });
 
-        // Simulate a referral sign-up (for testing purposes)
-        function addReferral() {
+        // Simulate a referral
+        function simulateReferral() {
             const currentBalance = parseInt(localStorage.getItem(walletKey), 10);
             const newBalance = currentBalance + referralBonus;
             localStorage.setItem(walletKey, newBalance);
@@ -108,14 +130,8 @@
             alert(`Referral successful! You earned ${referralBonus} coins.`);
         }
 
-        // Example: Simulating a referral trigger
-        document.addEventListener("DOMContentLoaded", () => {
-            updateWalletDisplay();
-
-            // Simulate a referral (can be triggered via button or API)
-            // Uncomment the line below to test the referral functionality
-            // addReferral();
-        });
+        // Initialize wallet display
+        document.addEventListener("DOMContentLoaded", updateWalletDisplay);
     </script>
 </body>
 </html>
