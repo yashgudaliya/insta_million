@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="material/css/styles.css">
     <link rel="stylesheet" href="material/css/st.css">
+    <style>
+        .copy-feedback {
+            color: green;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .balance {
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div class="frens-help">
@@ -14,17 +27,20 @@
             <h2>Invite friends and Earn insta million Coins! 500 </h2><br>
             <h3>Here’s how it works:</h3><br>
             <span>Click the link to get started:</span><br>
-                <span>  Sign up and start exploring.</span><br>
-                    <span> Invite your friends using your own referral link.</span><br>
-                        <span> Earn insta million Coins with every new sign-up and invite!</span><br>
+            <span>Sign up and start exploring.</span><br>
+            <span>Invite your friends using your own referral link.</span><br>
+            <span>Earn insta million Coins with every new sign-up and invite!</span><br>
         </div>
- 
     </div>
- 
+
     <div class="frens-invite">
+        <div class="balance">
+            Wallet Balance: <span id="walletBalance">0</span> Coins
+        </div>
         <div class="frens-invite-button">
-            <input type="text" value="https://t.me/Instamillion_Lotto_bot/insta_million" id="link" readonly>
+            <input type="text" value="https://yourdomain.com/referral/USER123" id="link" readonly>
             <button id="copyButton">Copy Link</button>
+            <div class="copy-feedback" id="copyFeedback">Link copied to clipboard!</div>
         </div>
     </div>
 
@@ -50,7 +66,59 @@
             <span>BALANCE</span>
         </a>
     </nav>
-    <script src="material/js/cojs.js"></script>
-    <script src="material/js/scripts.js"></script>
+
+    <script>
+        // Simulating backend API with local storage
+        const walletKey = "walletBalance"; // Key for storing wallet balance
+        const referralBonus = 500; // Coins per referral
+
+        // Initialize wallet balance in local storage
+        if (!localStorage.getItem(walletKey)) {
+            localStorage.setItem(walletKey, 0);
+        }
+
+        // Update wallet balance on page load
+        function updateWalletDisplay() {
+            const balance = localStorage.getItem(walletKey);
+            document.getElementById("walletBalance").textContent = balance;
+        }
+
+        // Handle Copy Link functionality
+        const copyButton = document.getElementById("copyButton");
+        const linkInput = document.getElementById("link");
+        const feedback = document.getElementById("copyFeedback");
+
+        copyButton.addEventListener("click", () => {
+            navigator.clipboard.writeText(linkInput.value)
+                .then(() => {
+                    feedback.style.display = "block";
+                    setTimeout(() => {
+                        feedback.style.display = "none";
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error("Failed to copy the link:", err);
+                    alert("Failed to copy the link. Please try again.");
+                });
+        });
+
+        // Simulate a referral sign-up (for testing purposes)
+        function addReferral() {
+            const currentBalance = parseInt(localStorage.getItem(walletKey), 10);
+            const newBalance = currentBalance + referralBonus;
+            localStorage.setItem(walletKey, newBalance);
+            updateWalletDisplay();
+            alert(`Referral successful! You earned ${referralBonus} coins.`);
+        }
+
+        // Example: Simulating a referral trigger
+        document.addEventListener("DOMContentLoaded", () => {
+            updateWalletDisplay();
+
+            // Simulate a referral (can be triggered via button or API)
+            // Uncomment the line below to test the referral functionality
+            // addReferral();
+        });
+    </script>
 </body>
 </html>
