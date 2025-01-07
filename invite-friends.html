@@ -1,98 +1,72 @@
-<!DOCTYPE html>
+[9:47 pm, 7/1/2025] Yash: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> - Frens</title>
-
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
-    <meta name="theme-color" content="#f19e36" />
-
-    <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico">
+    <title>Invite Friends</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="material/css/styles.css">
+    <link rel="stylesheet" href="material/css/st.css">
+    <style>
+        .copy-feedback {
+            color: green;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .balance {
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="frens">
-    
-    <div class="haeder">
-        <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <!-- Outer Circle -->
-                <circle cx="250" cy="250" r="240" fill="none" stroke="#D4AF37" stroke-width="20"/>
-            
-                <!-- Central Geometric Shape -->
-                <path d="M250 120 L310 200 L250 280 L190 200 Z" fill="#FFFFFF"/>
-                <rect x="230" y="180" width="40" height="40" fill="#000000"/>
-                <rect x="230" y="210" width="40" height="20" fill="#FFFFFF"/>
-              
-                <!-- Decorative Patterns -->
-                <circle cx="250" cy="250" r="200" fill="none" stroke="#D4AF37" stroke-dasharray="10 10" stroke-width="2"/>
-              
-                <!-- Inner Circular Elements -->
-                <circle cx="250" cy="250" r="100" fill="none" stroke="#FFFFFF" stroke-width="2"/>
-                <circle cx="250" cy="250" r="70" fill="none" stroke="#FFFFFF" stroke-width="2"/>
-              
-                <!-- Highlight Effect -->
-                <circle cx="250" cy="250" r="240" fill="none" stroke="#FFD700" stroke-opacity="0.4" stroke-width="15"/>
-              </svg>
-              
-        </a>
-    </div>
-
-    <div class="frens-main">
-
-        <div class="frens-count">
-            <span>Invite friends </span>
-        </div>
-
-        
-
-            
-
-            
-        </div>
-    </div>
-
-
-    
-
-        <div class="frens-help-box">
-            <div class="frens-help-content">
-                <div class="frens-help-image">
-                    <img src="./assets/images/World coin.svg" width="50px">
-                </div>
-                <div class="fren-help-text">
-                    <h5>Invite 5 friends </h5>
-                    <div>
-                        <img src="./assets/images/World coin.svg" width="15px">
-                        <span>2,500</span>
-                       
-                    </div>
-                </div>
-            </div>
-
-            <div class="frens-open-detail">
-                <a href="guid.html">Open details</a>
-            </div>
-        </div>
-    </div>
+<body>
     <div class="frens-help">
-        <div class="frens-help-title">
-            <h2>Invite friends and Earn Apple Coins! </h2><br>
-            <h3>Here’s how it works:</h3><br>
-            <span>Click the link to get started:</span><br>
-                <span>  Sign up and start exploring.</span><br>
-                    <span> Invite your friends using your own referral link.</span><br>
-                        <span> Earn Apple Coins with every new sign-up and invite!</span><br>
-        </div>
- <div class="frens-invite">
-        <div class="frens-invite-button">
-            <input type="text" value="https://youtube.com/@html-hero?si=iCMCmyo6Twil2okd" id="link" readonly>
-            <button id="copyButton">Copy Link</button>
-        </div>
-    </div>
- 
-   <script src="./assets/js/js.js"></script>
-    <script src="./assets/js/charge.js"></script>
+        <div class="frens-help-title"…
+[10:08 pm, 7/1/2025] Yash: let balance = parseInt(localStorage.getItem('balance')) || 0;
 
-</body>
-</html>
+function completeTask(reward, taskUrl) {
+    const currentTime = Date.now();
+    const lastCompletionTime = localStorage.getItem(${taskUrl}_time);
+
+    if (lastCompletionTime && currentTime - parseInt(lastCompletionTime) < 86400000) {
+        alert('You can only claim this reward once every 24 hours.');
+        return;
+    }
+
+    balance += reward;
+    updateBalance();
+
+    // Mark task as completed and save the timestamp
+    localStorage.setItem(taskUrl, 'true');
+    localStorage.setItem(${taskUrl}_time, currentTime);
+
+    localStorage.setItem('balance', balance);
+
+    window.open(taskUrl, '_blank');
+}
+
+function updateBalance() {
+    document.getElementById('balance').textContent = balance;
+}
+
+function clearExpiredTasks() {
+    const currentTime = Date.now();
+
+    Object.keys(localStorage).forEach((key) => {
+        if (key.endsWith('_time')) {
+            const taskTime = parseInt(localStorage.getItem(key), 10);
+            if (currentTime - taskTime > 86400000) {
+                const taskUrl = key.replace('_time', '');
+                localStorage.removeItem(taskUrl);
+                localStorage.removeItem(key);
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateBalance();
+    clearExpiredTasks();
+});
